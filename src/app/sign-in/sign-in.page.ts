@@ -69,7 +69,7 @@ export class SignInPage implements OnInit {
       this.api.setServerUrl(this.selectedCity.url);
     }
 
-    const defaultSupport = 'https://portabilis.freshdesk.com/';
+    const defaultSupport = 'https://suporte.edutopia.com.br/';
 
     this.supportUrl = this.selectedCity
       ? this.selectedCity.support_url || defaultSupport

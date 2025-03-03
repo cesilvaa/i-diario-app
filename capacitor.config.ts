@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.ionicframework.appoffline153013',
-  appName: 'Portábilis Diário',
+  appName: 'Edutopia Diário',
   webDir: 'www',
   server: {
     androidScheme: 'https',

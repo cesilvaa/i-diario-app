@@ -1,8 +1,8 @@
 {
-  "name": "i-diario",
+  "name": "i-diario-app-edutopia",
   "version": "1.2.8",
   "author": "Portábilis",
-  "homepage": "https://portabilis.com.br",
+  "homepage": "https://edutopia.com.br",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
