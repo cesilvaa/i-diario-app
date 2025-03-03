@@ -35,7 +35,6 @@ export class CustomersService {
                 support_url: customer.support_url,
               };
             })
-            .sort((a: Customer, b: Customer) => a.name.localeCompare(b.name));
         } else {
           return [];
         }
