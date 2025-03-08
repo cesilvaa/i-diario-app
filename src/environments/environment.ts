@@ -8,7 +8,7 @@ export const environment = {
     token: '',
     cities_url: 'https://cities.i-diario.com',
   },
-  production: true,
+  production: false,
 };
 
 /*
