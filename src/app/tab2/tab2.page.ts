@@ -5,6 +5,7 @@ import { UtilsService } from '../services/utils';
 import { forkJoin } from 'rxjs';
 import { StorageService } from '../services/storage.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -20,6 +21,7 @@ export class Tab2Page {
   teachingPlans: { unities: any[] } = { unities: [] };
   classrooms: any[] = [];
   currentDate: Date = new Date();
+  private loadingSync!: HTMLIonLoadingElement;
 
   constructor(
     private sync: SyncProvider,
@@ -28,13 +30,17 @@ export class Tab2Page {
     private messages: MessagesService,
     private router: Router,
     private route: ActivatedRoute,
+    private loadingCtrl: LoadingController
   ) {}
 
   async ngOnInit() {
     await this.sync.isSyncDelayed();
 
-    this.route.params.subscribe(() => {
-      this.loadContentDays();
+    this.route.params.subscribe(async () => {
+      this.currentDate = new Date();
+      this.contentRecords = [];
+      this.contentDays = [];
+      await this.loadContentDays();
     });
   }
 
@@ -42,7 +48,13 @@ export class Tab2Page {
     this.loadContentDays();
   }
 
-  loadContentDays() {
+  async loadContentDays() {
+    this.loadingSync = await this.loadingCtrl.create({
+      message: 'Carregando...',
+    });
+
+    await this.loadingSync.present();
+
     forkJoin([
       this.storage.get('contentLessonPlans'),
       this.storage.get('contentRecords'),
@@ -114,6 +126,7 @@ export class Tab2Page {
 
         this.currentDate.setDate(currentDate.getDate() - 1);
       }
+      this.loadingSync.dismiss();
     });
   }
 
