@@ -46,8 +46,8 @@ export class ContentRecordsSynchronizer {
       (contentRecords) => {
         const updatedRecords = contentRecords.filter((cr: any) => {
           return (
-            contentRecord.classroom_id !== cr.classroom_id ||
-            contentRecord.discipline_id !== cr.discipline_id ||
+            contentRecord.classroom_id != cr.classroom_id ||
+            contentRecord.discipline_id != cr.discipline_id ||
             contentRecord.record_date !== cr.record_date
           );
         });
