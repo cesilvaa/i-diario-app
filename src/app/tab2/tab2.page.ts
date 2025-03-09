@@ -48,12 +48,18 @@ export class Tab2Page {
     this.loadContentDays();
   }
 
-  async loadContentDays() {
+  async loadContentDays(refresh_content: boolean = false) {
     this.loadingSync = await this.loadingCtrl.create({
       message: 'Carregando...',
     });
 
     await this.loadingSync.present();
+
+    if (refresh_content) {
+      this.currentDate = new Date();
+      this.contentRecords = [];
+      this.contentDays = [];
+    }
 
     forkJoin([
       this.storage.get('contentLessonPlans'),
@@ -303,7 +309,7 @@ export class Tab2Page {
 
   doRefresh() {
     this.sync.execute().subscribe({
-      next: () => this.loadContentDays(),
+      next: () => this.loadContentDays(true),
     });
   }
 }
