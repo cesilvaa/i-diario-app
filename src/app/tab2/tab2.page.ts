@@ -37,10 +37,7 @@ export class Tab2Page {
     await this.sync.isSyncDelayed();
 
     this.route.params.subscribe(async () => {
-      this.currentDate = new Date();
-      this.contentRecords = [];
-      this.contentDays = [];
-      await this.loadContentDays();
+      await this.loadContentDays(true);
     });
   }
 
